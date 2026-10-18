@@ -1,0 +1,21 @@
+/home/arch-nitro/ml-zoomcamp-2026-homework/04-evaluation/homework4.py:17: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  cat = df.select_dtypes(include="object").columns.tolist()
+Q1 AUC per numerical feature (train):
+  annual_income: 0.6082
+  number_of_courses_viewed: 0.7230
+  interaction_count: 0.7649
+  lead_score: 0.7882
+  highest: lead_score
+
+Q2 validation AUC: 0.732
+Q3 precision/recall intersect at: 0.63
+Q4 max F1 at threshold: 0.41 (F1=0.7576)
+
+Q5 fold AUCs: [0.7306 0.7296 0.7363 0.7412 0.7209] std: 0.007
+
+Q6 CV over C:
+  C=1e-06: mean=0.617 std=0.019
+  C=0.001: mean=0.749 std=0.01
+  C=1: mean=0.732 std=0.007
+  best C: 0.001

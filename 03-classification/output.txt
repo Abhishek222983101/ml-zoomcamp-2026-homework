@@ -1,0 +1,49 @@
+/home/arch-nitro/ml-zoomcamp-2026-homework/03-classification/homework3.py:16: Pandas4Warning: For backward compatibility, 'str' dtypes are included by select_dtypes when 'object' dtype is specified. This behavior is deprecated and will be removed in a future version. Explicitly pass 'str' to `include` to select them, or to `exclude` to remove them and silence this warning.
+See https://pandas.pydata.org/docs/user_guide/migration-3-strings.html#string-migration-select-dtypes for details on how to write code that works with pandas 2 and 3.
+  cat = df.select_dtypes(include="object").columns.tolist()
+Missing values:
+ lead_source                 148
+industry                    240
+employment_status           194
+location                    208
+annual_income               369
+number_of_courses_viewed      0
+interaction_count             0
+lead_score                   35
+converted                     0
+dtype: int64 
+
+Q1 mode of industry: technology
+
+Q2 correlation matrix:
+                           annual_income  ...  lead_score
+annual_income                  1.000000  ...    0.229496
+number_of_courses_viewed       0.161300  ...    0.757204
+interaction_count              0.122842  ...    0.915746
+lead_score                     0.229496  ...    1.000000
+
+[4 rows x 4 columns]
+  interaction_count / lead_score: 0.9157
+  number_of_courses_viewed / lead_score: 0.7572
+  number_of_courses_viewed / interaction_count: 0.7216
+  annual_income / interaction_count: 0.1228
+
+Q3 mutual information (train):
+{'lead_source': 0.03, 'industry': 0.0, 'employment_status': 0.02, 'location': 0.0} -> biggest: lead_source
+
+Q4 accuracy: 0.65 (raw 0.645)
+
+Q5 feature elimination:
+  without lead_source: diff = 0.003000
+  without industry: diff = 0.000000
+  without employment_status: diff = 0.000000
+  without location: diff = 0.000000
+  without annual_income: diff = -0.079000
+  without number_of_courses_viewed: diff = 0.002000
+  without interaction_count: diff = 0.044000
+  without lead_score: diff = 0.001000
+  smallest diff among options: number_of_courses_viewed
+
+Q6 regularisation:
+{1e-06: 0.598, 1e-05: 0.598, 0.0001: 0.613, 0.001: 0.645}
+  best C (smallest on tie): 0.001
